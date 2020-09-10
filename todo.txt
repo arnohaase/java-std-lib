@@ -1,3 +1,11 @@
+Precondition:
+- JDK -> 15 (Ab Java 8)
+- IDE
+
+
+Actions:
+- Modulsystem und ClassLoading
+
 Block 1
 
 primitives
@@ -40,6 +48,118 @@ String
 
  Enums
  - Constructor, fields, methods
- - name, valueOf
+ - name, valueOf, values
+ - inmdexOf -> DB!? Boom
  - class Enum
- -
+
+
+Block 2
+Collections/Stream
+
+ Collection, List, Set
+   - of, copyOf
+   - Iterator, Iterable
+   - iterator, for loop,
+   -- single thread concurrent modification
+   - random access
+   - Collections, Arrays
+      - collection vs Array  API
+   - Collections - sort, shuffle, binary, search
+
+ Stream
+   - API
+   - Iterator vs stream
+   - LongStream
+   - Concurrency - parallel stream()
+   - filter, map, flatMap,
+   - collect, to map, to List, ...
+   - toIterator
+
+  Map
+   - computeIfAbsent
+   - defaults
+   - ...
+
+  Sorted Map/Set
+    Comparator, Compareable
+
+
+Queue, Deque
+ - eigentlich nur Concurrency
+ArrayList, HashSet, BitSet, EnumSet, CoWList, LinkedList
+Performance Mythen
+ - Arrays[] <-> ArrayList
+ - LinkedLIst
+ - Streams sind effizienter vs Lesbarkeit (schneller?)
+Premature Optimization
+
+
+
+Block 3
+Time API
+  Instant vs LocalDateTime vs ZonedDateTime
+  Time Zone
+    - ZoneID vs offset (Berlin+1, Berlin +2)
+    - SommerZeit
+  Legacy
+    - java.util.Date
+    - Formatter
+      - nicht threadsafe bei Legacy
+  API zeigen
+    - before, after, compare, equal
+    - Chrono Unit
+
+  Json?
+  DB? JDBC
+
+
+
+Block 4
+Reflection
+Use JavaP
+Java Beans
+- class, method, field
+- accessibility
+- set accessible
+- newInstance, constructor, aufrufe, get, set, Exceptions
+   - side effect free loading
+- Zugriff auf Annotations
+ - retention
+- Tpye Hierarchy
+ - methods on interfaces, ...
+- Nests
+-- private for nest not class
+
+(Modulsystem)
+  Hidden Classes
+  Records
+  ClassPathScanning
+
+Annotation Vererbung (Java vs Frameworks)
+
+Classloader
+- ContextClassLoader
+- URL ClassLoader
+- Load Resources
+- Hierarchy
+- Single Class Loader (Spring)
+
+- Service Loader
+- enum
+- records
+- Dynamische Proxy
+
+
+Generics
+- CLass, Method
+
+Graal VM
+
+Integer 1 == 2
+
+
+==========
+Attic
+ - Random, SecureRandom, ThreadLocalRandom
+   - API
+ - UUID, types
