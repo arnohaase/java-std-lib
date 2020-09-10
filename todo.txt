@@ -1,0 +1,45 @@
+Block 1
+
+primitives
+- types
+- int, byte, long, char
+- long <= int <= byte  (Coercion)
+- bitmask == 0x80  -> ?!
+
+int a = 10_000
+hex, bin
+
+- void, -- Object? any? nothing?
+
+Boxed
+- Number, Integer, Long
+- Number.format
+
+Conversion
+- explicit, implicit
+- unboxing mit ?
+
+Other:
+- BigInteger, BigDecimal
+
+Array[]
+  - int <-> Integer
+
+String
+ - multiline
+ - trim/strip
+ - Builder patterns
+ -- lesbar? Schneller?
+ - String.format
+ - encoding, utf16 - lating (internal)
+ - escaping \\ \u20
+ -- utf8 varlength
+ - Encoding for developers
+ - Charset
+
+
+ Enums
+ - Constructor, fields, methods
+ - name, valueOf
+ - class Enum
+ -
