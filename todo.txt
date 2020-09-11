@@ -39,7 +39,7 @@ String
  - Builder patterns
  -- lesbar? Schneller?
  - String.format
- - encoding, utf16 - lating (internal)
+ - encoding, utf16 - latin (internal)
  - escaping \\ \u20
  -- utf8 varlength
  - Encoding for developers
@@ -49,7 +49,7 @@ String
  Enums
  - Constructor, fields, methods
  - name, valueOf, values
- - inmdexOf -> DB!? Boom
+ - indexOf -> DB!? Boom
  - class Enum
 
 
@@ -81,7 +81,7 @@ Collections/Stream
    - ...
 
   Sorted Map/Set
-    Comparator, Compareable
+    Comparator, Comparable
 
 
 Queue, Deque
@@ -125,7 +125,7 @@ Java Beans
    - side effect free loading
 - Zugriff auf Annotations
  - retention
-- Tpye Hierarchy
+- Type Hierarchy
  - methods on interfaces, ...
 - Nests
 -- private for nest not class
@@ -149,9 +149,10 @@ Classloader
 - records
 - Dynamische Proxy
 
+- MethodHandle, VarHandle
 
 Generics
-- CLass, Method
+- Class, Method, Field, Parameter
 
 Graal VM
 
