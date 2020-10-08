@@ -17,6 +17,7 @@ primitives
 
 int a = 10_000
 hex, bin
+octal(!)
 
 - void, -- Object? any? nothing?
 
