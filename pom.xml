@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ajjpj.jax.jsl</groupId>
-    <artifactId>jsl</artifactId>
+    <artifactId>java-std-lib</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 

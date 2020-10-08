@@ -3,10 +3,8 @@ Precondition:
 - IDE
 
 
-Actions:
-- Modulsystem und ClassLoading
 
-Block 1
+Block 1 (arno)
 
 primitives
 - types
@@ -24,7 +22,8 @@ hex, bin
 
 Boxed
 - Number, Integer, Long
-- Number.format
+
+NumberFormat
 
 Conversion
 - explicit, implicit
@@ -35,18 +34,17 @@ Other:
 
 Array[]
   - int <-> Integer
+  - String[] vs Object[] ?!?!?
 
 String
  - multiline
  - trim/strip
- - Builder patterns
- -- lesbar? Schneller?
+ - concat --> lesbar? Schneller?
  - String.format
+ - intern()
  - encoding, utf16 - latin (internal)
  - escaping \\ \u20
  -- utf8 varlength
- - Encoding for developers
- - Charset
 
 
  Enums
@@ -54,9 +52,24 @@ String
  - name, valueOf, values
  - indexOf -> DB!? Boom
  - class Enum
+ - ==
+ - switch vollständig
 
 
-Block 2
+Block 1b (arno)
+Basis-APIs
+
+ - Methoden von java.lang.Object
+    - equals: RST
+
+ - Comparable, Comparator
+ - exceptions, Throwable etc.
+ - InputStream, OutputStream, Reader, Writer
+   - Charset
+   - PrintStream ?!?!?!
+
+
+Block 2 (nico)
 Collections/Stream
 
  Collection, List, Set
@@ -83,6 +96,8 @@ Collections/Stream
    - defaults
    - ...
 
+  IdentityHashMap
+
   Sorted Map/Set
     Comparator, Comparable
 
@@ -98,7 +113,7 @@ Premature Optimization
 
 
 
-Block 3
+Block 3 (arno)
 Time API
   Instant vs LocalDateTime vs ZonedDateTime
   Time Zone
@@ -117,7 +132,7 @@ Time API
 
 
 
-Block 4
+Block 4 (nico)
 Reflection
 Use JavaP
 Java Beans
@@ -167,3 +182,5 @@ Attic
  - Random, SecureRandom, ThreadLocalRandom
    - API
  - UUID, types
+
+- Modulsystem und ClassLoading
