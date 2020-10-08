@@ -14,6 +14,12 @@ public class NumberWrapAround {
             }
         }
 
+        System.out.println(1/3);
+        System.out.println(2/3);
+
+        System.out.println(10 % 3);
+        System.out.println(-10 % 3);
+
         System.out.println(Integer.toBinaryString(100));
         System.out.println(Integer.toBinaryString(100 << 2));
         System.out.println(Integer.toBinaryString(100 >> 2));
