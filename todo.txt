@@ -133,6 +133,9 @@ Time API
   Json?
   DB? JDBC
 
+  Wochentag des Geburtstags
+  10000er Geburtstag
+  Ist es gerade zwischen Mitternacht und 1:00 morgens an einem Wochentag
 
 
 Block 4 (nico)

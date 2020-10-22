@@ -26,6 +26,10 @@ public class ConcurrentModification {
         for (Event e : myList) {
             processEvent(e);
         }
+
+        while (!myList.isEmpty()) {
+            processEvent(myList.remove(0));
+        }
     }
 
     public void addEvent(Event event) {
