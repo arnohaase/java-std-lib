@@ -22,7 +22,7 @@ public class TestStreams {
 
     @Test
     public void testStreamsVsLoops_calls() {
-        int sum = IntStream.range(0, 100)
+//        int sum = IntStream.range(0, 100)
 //                           .forEach(i -> max(i));
 //        .forEach(i -> System.out.println(i));
 

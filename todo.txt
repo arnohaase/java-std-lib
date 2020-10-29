@@ -1,6 +1,157 @@
-Precondition:
-- JDK -> 15 (Ab Java 8)
-- IDE
+
+Java 15!!
+junit 5
+
+Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
+
+Ablauf
+------
+
+* Basis-APIs (Arno)
+  * java.lang.Object
+  * Comparable / Comparator
+    # (Negativ-)Beispiele verteilen --> herumspielen
+    # Quiz
+    # Frage / Antwort
+
+  * InputStream, Reader / Writer
+    * AutoCloseable, try-with-resource (einer, mehrere)
+    * int, -1 für eof (sowohl bei byte als auch bei char)
+    * encodings
+    # Datei in einen String einlesen
+    # Datei von ISO-8859-1 nach UTF-8 konvertieren (streaming)
+
+  * Exceptions
+    * Throwable, Error, RuntimeException
+    * functional interfaces (wrap - RuntimeException / TunnelingException / lokale Kategorisierung? -> Diskussion)
+    * cause, suppressed
+    * stack traces
+    # Beispiel für cause, suppressed
+    # Quiz, Frage / Antwort (class not found, no such method)
+
+* Collections
+  * Collection / List / Set (Nico)
+    * RandomAccess, contains
+    * Iterator, Iterable
+    * for loop
+      * ConcurrentModificationException
+    * while-Schleife auf Iterator
+      * Iterator.remove()
+
+    * List: sort(), binarySearch(), shuffle()
+
+    * SortedSet
+      * vs sorted List
+
+    # Satz zerlegen, Worte nach Länge sortieren
+      * set vs. list, verschiedene Worte mit selber Länge, ...
+
+  * welche Implementierungen gibt es, wann welche verwenden (Arno) TODO hier Übungen? -> spontan entscheiden
+    * Queue / Deque ( -> LinkedList)
+    * CowList
+    * EnumSet
+    * BitSet
+    * ConcurrentHashMap
+
+  * Map (Arno)
+    * computeIfAbsent() (Reentranz)
+    * ...
+
+    * IdentityHashMap
+
+    # TODO - cache bauen? (ohne retention policy)
+
+  * Lambdas (Nico)
+    * functional interface, SAM
+    * Syntax-Varianten
+    * bindings / closure
+    * "effectively final"
+
+    # Collection.forEach() -> alle Elemente einer Liste ausgeben (explizit, Pointer auf eigene Methode, Pointer auf System.out.println)
+
+  * Streams (Nico)
+    * was ist das
+    * vs. iterator()
+    * filter(), map(), forEach(), collect() auf List
+
+    # Stream von Zahlen, ungerade Zahlen herausfiltern, halbieren
+      * Methodenpointer als Lambdas -> Testability
+
+    * findFirst(), count(), distinct()
+
+    # Liste von Namen, nach einem Namenspräfix suchen (Bonus: per Regex)
+      * Die matchenden Namen zählen (NB: Zählen und Ergebnisstream geht nicht direkt in einem Durchlauf)
+      * Duplikate entfernen
+
+    * collect() - List, Set, Map
+
+    # Satz mit Streams in Map collecten
+      * Möglichkeiten diskutieren
+
+    * flatMap()
+
+    # Stream von Sätzen
+
+    * unit testing
+      * Stream.of(...)
+
+    * parallel streams - nicht
+
+
+==== Mittag
+
+  * Primitives
+
+    TODO
+
+    * Strings
+      * Multi-Line literals
+
+    TODO
+
+
+  * Time API (Arno)
+    * Instant
+      * now()
+      * before(), after()
+      * until() -> Duration, ChronoUnit
+
+    # wie lange dauert ...?
+
+    * LocalDateTime
+
+    # Wochentag des Geburtstags
+      * 10.000er Geburtstag
+
+    * ZoneId
+      * ZoneRegion, ZoneOffset
+      * ZonedDateTime
+
+    # ist es zwischen 13:00 und 14:00 an einem Wochentag?
+
+    * Testability
+      * Clock
+
+    # Beispiele oben umstellen
+      * Beispiel für Instant mit Clock: Person-Struct, der den Erzeugungs-Timestamp in einem Feld speichert
+
+    * Formatieren
+
+  * Reflection innerhalb einer Klasse (Nico)
+
+  TODO
+
+  * Reflection "im Großen" (Arno)
+
+  TODO
+
+
+  * Optional / Auswahl
+    * Random
+    * UUID
+
+
+
 
 
 
@@ -133,6 +284,7 @@ Time API
   Json?
   DB? JDBC
 
+  Clock
   Wochentag des Geburtstags
   10000er Geburtstag
   Ist es gerade zwischen Mitternacht und 1:00 morgens an einem Wochentag
@@ -157,6 +309,7 @@ Java Beans
 (Modulsystem)
   Hidden Classes
   Records
+  Nests
   ClassPathScanning
 
 Annotation Vererbung (Java vs Frameworks)
@@ -183,10 +336,10 @@ Graal VM
 Integer 1 == 2
 
 
-==========
-Attic
- - Random, SecureRandom, ThreadLocalRandom
-   - API
- - UUID, types
 
-- Modulsystem und ClassLoading
+
+laden von Klassen by name - nicht Class.forName() sondern Thread.currentThread().getContextClassLoader()
+context class loader
+resource as stream
+resources as stream
+service loader
