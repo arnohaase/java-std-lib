@@ -1,7 +1,8 @@
 package collections.aufgaben;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
@@ -12,7 +13,7 @@ public class TestIntToLongStream {
         long sum = IntStream.of(1,5,4,10,3,1000,500)
                 .asLongStream()
                 .sum();
-        Assert.assertEquals("Sum should 1523", 1523L, sum);
+        Assertions.assertEquals(1523L, sum, "Sum should 1523");
     }
 
     @Test
@@ -21,7 +22,7 @@ public class TestIntToLongStream {
                 .mapToObj(Long::valueOf)
                 .mapToLong(l -> l)
                 .sum();
-        Assert.assertEquals("Sum should 1523", 1523L, sum);
+        Assertions.assertEquals(1523L, sum, "Sum should 1523");
     }
 
 

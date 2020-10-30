@@ -1,7 +1,7 @@
 package reflection.aufgaben;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import reflection.aufgaben.classes.AbstractValue;
 import reflection.aufgaben.classes.AddingValue;
 import reflection.aufgaben.classes.Value;
@@ -33,14 +33,14 @@ public class ClassWalker {
     @Test
     public void callingPublicMethods() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method increment = AddingValue.class.getMethod("increment", int.class);
-        Assert.assertEquals(6, increment.invoke(new AddingValue(), 5));
+        Assertions.assertEquals(6, increment.invoke(new AddingValue(), 5));
     }
 
     @Test
     public void callingProtectedMethods() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method valueToAdd = AbstractValue.class.getDeclaredMethod("valueToAdd");
         valueToAdd.setAccessible(true);
-        Assert.assertEquals(1, valueToAdd.invoke(new AddingValue()));
+        Assertions.assertEquals(1, valueToAdd.invoke(new AddingValue()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ClassWalker {
 
         Field increment = AddingValue.class.getDeclaredField("increment");
         increment.setAccessible(true);
-        Assert.assertEquals(1, increment.get(new AddingValue()));
+        Assertions.assertEquals(1, increment.get(new AddingValue()));
     }
 
     @Test
@@ -83,14 +83,14 @@ public class ClassWalker {
         check(classNames, "Value");
 
         Value v = (Value) AddingValue.class.getAnnotations()[0];
-        Assert.assertEquals(5, v.value());
+        Assertions.assertEquals(5, v.value());
     }
 
     private void check(Set<String> methodNames, String... expectedMethods) {
-        Assert.assertEquals(expectedMethods.length, methodNames.size());
+        Assertions.assertEquals(expectedMethods.length, methodNames.size());
         List<String> expected = Arrays.asList(expectedMethods);
         for (String expectedName : expectedMethods) {
-            Assert.assertTrue("Did not contain "+expectedName, methodNames.contains(expectedName));
+            Assertions.assertTrue(methodNames.contains(expectedName), "Did not contain "+expectedName);
         }
     }
 

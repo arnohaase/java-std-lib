@@ -1,7 +1,8 @@
 package collections.aufgaben;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,10 +26,10 @@ public class TestCrosswordPuzzle {
                                                                                    Collections::singletonList,
                                                                                    this::merge));
 
-        Assert.assertEquals(4, wordsByLength.get(3).size());
-        Assert.assertEquals(5, wordsByLength.get(6).size());
-        Assert.assertEquals(1, wordsByLength.get(15).size());
-        Assert.assertEquals("unterschiedlich", wordsByLength.get(15).get(0));
+        Assertions.assertEquals(4, wordsByLength.get(3).size());
+        Assertions.assertEquals(5, wordsByLength.get(6).size());
+        Assertions.assertEquals(1, wordsByLength.get(15).size());
+        Assertions.assertEquals("unterschiedlich", wordsByLength.get(15).get(0));
     }
 
     private List<String> merge(List<String> l1, List<String> l2) {
