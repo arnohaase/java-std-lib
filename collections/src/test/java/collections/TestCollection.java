@@ -1,5 +1,6 @@
 package collections;
 
+import com.sun.source.tree.Tree;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class TestCollection {
 
@@ -60,7 +62,7 @@ public class TestCollection {
 
     @Test
     public void testRetain() {
-        List<Integer> list = new ArrayList<Integer>(List.of(1,2,3,4,5,6,7,8,9));
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
         list.retainAll(List.of(6,7,8,9,10,11));
         Assertions.assertEquals(4, list.size());
         Assertions.assertEquals(7, list.get(1).intValue());
@@ -68,7 +70,7 @@ public class TestCollection {
 
     @Test
     public void testShuffle() {
-        List<Integer> list = new ArrayList<Integer>(List.of(1,2,3,4,5,6,7,8,9));
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9));
         Collections.shuffle(list);
         List<Integer> shuffle1 = List.copyOf(list);
         Collections.shuffle(list);
@@ -82,7 +84,7 @@ public class TestCollection {
 
     @Test
     public void testSort() {
-        List<Integer> list = new ArrayList<Integer>(List.of(2,3,4,5,6,7,8,9,1));
+        List<Integer> list = new ArrayList<>(List.of(2,3,4,5,6,7,8,9,1));
         List<Integer> sortedList = List.of(1,2,3,4,5,6,7,8,9);
         Collections.sort(list);
         Assertions.assertEquals(sortedList, list);
@@ -93,7 +95,31 @@ public class TestCollection {
         List<Integer> list = List.of(1,2,3,4,5,6,7,8,9);
         int index = Collections.binarySearch(list, 5);
         Assertions.assertEquals(5, list.get(index).intValue());
+    }
 
+    @Test
+    public void testBinarySearch2() {
+        List<Integer> list = List.of(1,2,3,4,6,7,8,9);
+        int index = Collections.binarySearch(list, 5);
+        Assertions.assertEquals(-5, index);
+    }
+
+    @Test
+    public void testSortedSet() {
+        Set<Integer> sorted = new TreeSet<>();
+        sorted.add(5);
+        sorted.add(3);
+        sorted.add(1);
+        sorted.add(8);
+        sorted.add(2);
+        sorted.add(2);
+        sorted.add(2);
+        sorted.add(2);
+        Assertions.assertEquals(5, sorted.size());
+        Assertions.assertEquals(1, (int)sorted.iterator().next());
+        for (int i : sorted) {
+            System.out.println(i);
+        }
     }
 
 }
