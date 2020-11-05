@@ -4,14 +4,6 @@ import java.util.Objects;
 
 public class Boxing {
     public static void main(String[] args) {
-        String s = """
-                Hallo
-                  Nico
-                """;
-
-        System.out.println(s);
-
-
         int i = 5;
         long l = 5;
 
