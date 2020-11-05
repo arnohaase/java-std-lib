@@ -1,24 +1,91 @@
 
-Java 15!!
-junit 5
-
 Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
+* "euer" Workshop, euer Tempo, eure Schwerpunkte
+"verteilten" Workspace live aufbauen und wachsen lassen? (--> auch als Material für die Teilnehmen)
+
+TODO zeitlichen Ablauf detaillierter durchgehen
+TODO Bitmasks -> Charactor.isAlphabetic
 
 Ablauf
 ------
 
 * Basis-APIs (Arno)
-  * java.lang.Object
+  * java.lang.Object TODO ans Ende? durchprogrammieren?
   * Comparable / Comparator
-    # (Negativ-)Beispiele verteilen --> herumspielen
-    # Quiz
-    # Frage / Antwort
+  # (Negativ-)Beispiele verteilen --> herumspielen
+  # Quiz
+  # Frage / Antwort
 
   * InputStream, Reader / Writer
+    * InputStream
+      * != "Java Streams"
+      * Byte-basiert -> Binärdaten
+      * "halb" blocking
+      * Basis-API:
+        * int read() -> -1 für EOF, "unsigned byte"
+        * int read(byte[]) -> mit / ohne offs / len -> liest nicht immer alles, was da ist
+          * Bulk Read -> Performance-Optimierung -> BufferedInputStream, NIO / ByteBuffer
+        * close() -> potentiell OS-Ressourcen -> exhaustion zeigen
+      * erweitertes API -> low-level aber seltener gebraucht
+        * long skip(long)
+        * long available()
+        * isMarkSupported(), mark(), reset()
+      * Convenience-API -> Logik "obendrauf"
+        * transferTo(OutputStream)
+        * readNBytes()
+        * readAllBytes()
+        * void skipNBytes(long)
+    * OutputStream
+      * write(byte) -> statt int bei read!
+      * write(byte[]) -> mit / ohne offs / len
+      * close()
+      * flush()
+    * Ausprägungen
+      * File
+      * ByteArray
+      * Buffered (--> Wrapper)
+      * Sockets, Pipes, ...
+      * Serialisierung -> Object*
+      * SequenceInputStream
+      * 3rd party: tar, gzip, uuencode, ...
+
+      * DON'T USE:
+        * StringBufferInputStream
+
+    # Alle Vorkommen des Bytes 99 in einer Datei ermitteln
+    # Datei einlesen, alle geraden Bytes in eine Datei und ungerade Bytes in eine andere Datei
+
+    * Reader -> Zeichen-basiert
+      * oft (nicht immer) auf Bytes abgebildet, dann *immer* über Encoding
+        * Encodings: Zeichen auf Bytes und umgekehrt
+          * manchmal scheinbar gleich, aber wichtiger Unterschied
+            * iso-8859-15
+            * utf-8 -> bis zu 6 bytes/Zeichen
+            * utf-16 -> Basis-Typ "char"
+          * beide Richtungen funktionieren nicht immer
+          * hat nichts zu tun mit CR / CR+LF etc.
+      * int read() --> int statt char wg. -1 für EOF
+      * int read(char[]) -> mit / ohne offset / len
+      * close()
+      * transferToWriter() / analog zu InputStream
+    * Writer
+      * void write(char)
+      * int write(char[]) -> mit / ohne offs / len
+      * flush(), close()
+
+    * Ausprägungen:
+      * String
+      * File
+      * Buffered -> BufferedReader.readLine()
+      * InputStream/OutputStream (Wrapper)
+        * mit Encoding
+        * API: leider ist Encoding "optional", "Default- / Plattform-Encoding" -> nicht darauf verlassen
+      * PrintWriter (Wrapper)
+        * es gibt PrintStream -> Legacy für System.out, System.err
+
     * AutoCloseable, try-with-resource (einer, mehrere)
-    * int, -1 für eof (sowohl bei byte als auch bei char)
-    * encodings
-    # Datei in einen String einlesen
+    
+    # Datei in einen String einlesen (zeichenweise, dann gerne auch mit Convenience)
     # Datei von ISO-8859-1 nach UTF-8 konvertieren (streaming)
 
   * Exceptions
@@ -43,8 +110,27 @@ Ablauf
     * SortedSet
       * vs sorted List
 
+    * TODO of(), copyOf()
+
+
     # Satz zerlegen, Worte nach Länge sortieren
       * set vs. list, verschiedene Worte mit selber Länge, ...
+
+  * Map (Arno)
+    * of, ofEntries, copyOf
+    * put, get, getOrDefault()
+    * containsKey, containsValue, contains
+    * keySet(), values(), entrySet()
+    * computeIfAbsent() -> Cache (Reentranz)
+    * merge() -> Counter / Teilnehmer (Set von Strings als Value, Veranstaltung als Key)
+    * computeIfPresent() -> ???
+    * putIfAbsent()
+    * putAll()
+    * replace() / replaceAll()
+
+    * ...
+
+    # TODO - cache bauen? (ohne retention policy)
 
   * welche Implementierungen gibt es, wann welche verwenden (Arno) TODO hier Übungen? -> spontan entscheiden
     * Queue / Deque ( -> LinkedList)
@@ -52,22 +138,18 @@ Ablauf
     * EnumSet
     * BitSet
     * ConcurrentHashMap
-
-  * Map (Arno)
-    * computeIfAbsent() (Reentranz)
-    * ...
-
     * IdentityHashMap
+      * Collections.newSetFromMap()
+    * LinkedHashMap
 
-    # TODO - cache bauen? (ohne retention policy)
-
-  * Lambdas (Nico)
+  * Lambdas (Nico) //TODO ganz an den Anfang?
     * functional interface, SAM
     * Syntax-Varianten
     * bindings / closure
     * "effectively final"
 
     # Collection.forEach() -> alle Elemente einer Liste ausgeben (explizit, Pointer auf eigene Methode, Pointer auf System.out.println)
+    # eigenes "funktionales Interface", statische Methode "applyToFirst", die dieses eigene Interface auf dsa erste Element einer Liste anwendet (?)
 
   * Streams (Nico)
     * was ist das
@@ -101,14 +183,64 @@ Ablauf
 ==== Mittag
 
   * Primitives
+    - types
+    - int, byte, long, char
+    - long <= int <= byte  (Coercion)
+    - bitmask == 0x80  -> ?!
+    - float, double
+    --  1/8 + 1/4 == 3/8
+    --  5.1 + 0.1 != 5.2
 
-    TODO
+    int a = 10_000
+    hex, bin
+    octal(!)
+
+    Boxed
+    - Number, Integer, Long
+
+    * allgemein: Companion Objects
+
+    Number
+    * NumberFormat
+      * getInstance()
+      * DecimalFormat
+
+    # schreibe eine Methode, die eine beliebige Zahl mit '_' als Tausendertrenner und vier Nachkommastellen formatiert
+
+    Array[]
+      - int <-> Integer
+      - String[] vs Object[] ?!?!?
+
+    * Character
+      * isLetter()
+      * isDigit()
+      * isWhitespace()
+      * isJavaIdentifierStart() / ...Part()
+
+      * getType()
+      * getName()
+      * getDirectionality()
 
     * Strings
+      * charAt
+      * chars()
+      * Escaping, \\ \u
       * Multi-Line literals
+      * format
+      * concatenation
+        * +
+        * StringBuilder
+      * substring()
+        * kein Sharing mehr
+      * startsWith(), endsWith()
+      * indexOf(), lastIndexOf()
+      * intern(), new String()
+      * replace(), replaceAll()
+      * toLowerCase(), toUpperCase(), equalsIgnoreCase()
+      * join()
 
-    TODO
-
+    # Whitespaces in einem String zählen
+    # den ersten Identifier aus einem String extrahieren
 
   * Time API (Arno)
     * Instant
@@ -135,7 +267,10 @@ Ablauf
     # Beispiele oben umstellen
       * Beispiel für Instant mit Clock: Person-Struct, der den Erzeugungs-Timestamp in einem Feld speichert
 
-    * Formatieren
+    * Formatieren: DateTimeFormatter
+      * statische Felder mit vordefinierten Formattern
+      * Instant.toString(), LocalDateTime.toString()
+      * Jackson: JavaTimeModule, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
 
   * Reflection innerhalb einer Klasse (Nico)
 
@@ -147,9 +282,12 @@ Ablauf
 
 
   * Optional / Auswahl
+    * Pattern / Regex
     * Random
     * UUID
     * Arrays
+    * Chronology
+    * Methoden von java.lang.Object
 
 
 
