@@ -3,17 +3,13 @@ Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
 * "euer" Workshop, euer Tempo, eure Schwerpunkte
 "verteilten" Workspace live aufbauen und wachsen lassen? (--> auch als Material für die Teilnehmen)
 
+TODO Live-workspace aufsetzen
 TODO zeitlichen Ablauf detaillierter durchgehen
-TODO Bitmasks -> Charactor.isAlphabetic
 
 Ablauf
 ------
 
 * Basis-APIs (Arno)
-  * Comparable / Comparator
-  # (Negativ-)Beispiele verteilen --> herumspielen
-  # Quiz
-  # Frage / Antwort
 
   * InputStream, Reader / Writer
     * InputStream
@@ -109,6 +105,14 @@ Ablauf
     * SortedSet
       * vs sorted List
 
+    * TODO contract von add(), remove()
+      * ersetzt add() bei Set oder nicht
+    * TODO contains
+      * indexOf(), lastIndexOf()
+      # Liste der zu löschenden Indizes löschen -> rückwärts
+      # alle Duplikate in einer Liste finden + ausgeben
+    * TODO Contract von List vs. Set
+      * Set ist ein leeres (Marker-)Interface
     * TODO of(), copyOf()
 
 
@@ -127,9 +131,9 @@ Ablauf
     * putAll()
     * replace() / replaceAll()
 
-    * ...
-
-    # TODO - cache bauen? (ohne retention policy)
+    # Teilernehmerverwaltung (key=Veranstaltung)
+      * Teilnehmer abfragen (nie null!)
+      * Teilnehmer hinzufügen / entfernen
 
   * welche Implementierungen gibt es, wann welche verwenden (Arno) TODO hier Übungen? -> spontan entscheiden
     * Queue / Deque ( -> LinkedList)
@@ -140,8 +144,9 @@ Ablauf
     * IdentityHashMap
       * Collections.newSetFromMap()
     * LinkedHashMap
+      * LRU-Cache
 
-  * Lambdas (Nico) //TODO ganz an den Anfang?
+  * Lambdas (Nico)
     * functional interface, SAM
     * Syntax-Varianten
     * bindings / closure
@@ -169,6 +174,8 @@ Ablauf
     # Satz mit Streams in Map collecten
       * Möglichkeiten diskutieren
 
+    * downcast mit .map()
+    * nur kleine Lambdas inline
     * flatMap()
 
     # Stream von Sätzen
@@ -241,6 +248,18 @@ Ablauf
     # Whitespaces in einem String zählen
     # den ersten Identifier aus einem String extrahieren
 
+    Enums
+     - Constructor, fields, methods
+     - name, valueOf, values
+     - indexOf -> DB!? Boom
+     - class Enum
+     - ==
+     - switch vollständig
+
+  * Comparable / Comparator
+    TODO
+
+
   * Time API (Arno)
     * Instant
       * now()
@@ -252,7 +271,7 @@ Ablauf
     * LocalDateTime
 
     # Wochentag des Geburtstags
-      * 10.000er Geburtstag
+    # 10.000er Geburtstag
 
     * ZoneId
       * ZoneRegion, ZoneOffset
@@ -275,8 +294,15 @@ Ablauf
 
   TODO
 
+    # alle Methoden / Felder von HashSet ausgeben
+    # Klasse "Person", Property by name setzen / lesen
+
   * Reflection "im Großen" (Arno)
 
+    * contextClassLoader()
+      * *nicht* Class.forName()
+    * annotation
+    * Type vs Class
 
 
     # Typ-Hierarchie von ArrayList
@@ -291,6 +317,9 @@ Ablauf
     * Arrays
     * Chronology
     * Methoden von java.lang.Object
+      # (Negativ-)Beispiele verteilen --> herumspielen
+      # Quiz
+      # Frage / Antwort
 
 
 
