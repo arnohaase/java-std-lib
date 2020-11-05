@@ -10,7 +10,6 @@ Ablauf
 ------
 
 * Basis-APIs (Arno)
-  * java.lang.Object TODO ans Ende? durchprogrammieren?
   * Comparable / Comparator
   # (Negativ-)Beispiele verteilen --> herumspielen
   # Quiz
@@ -278,6 +277,10 @@ Ablauf
 
   * Reflection "im Großen" (Arno)
 
+
+
+    # Typ-Hierarchie von ArrayList
+    # Typ-Hierarchie der Klasse zu einem FQN
   TODO
 
 
