@@ -1,15 +1,16 @@
 
 Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
 * "euer" Workshop, euer Tempo, eure Schwerpunkte
+* jederzeit akustisch zu Wort melden
 "verteilten" Workspace live aufbauen und wachsen lassen? (--> auch als Material für die Teilnehmen)
+* erklären: JUnit-Tests, um kleine Schnipsel unabhängig ausführen zu können
 
 TODO Live-workspace aufsetzen
-TODO zeitlichen Ablauf detaillierter durchgehen
 
 Ablauf
 ------
 
-* Basis-APIs (Arno)
+* I/O (Arno) 1:00
 
   * InputStream, Reader / Writer
     * InputStream
@@ -83,7 +84,7 @@ Ablauf
     # Datei in einen String einlesen (zeichenweise, dann gerne auch mit Convenience)
     # Datei von ISO-8859-1 nach UTF-8 konvertieren (streaming)
 
-  * Exceptions
+  * Exceptions (0:00)
     * Throwable, Error, RuntimeException
     * functional interfaces (wrap - RuntimeException / TunnelingException / lokale Kategorisierung? -> Diskussion)
     * cause, suppressed
@@ -91,8 +92,8 @@ Ablauf
     # Beispiel für cause, suppressed
     # Quiz, Frage / Antwort (class not found, no such method)
 
-* Collections
-  * Collection / List / Set (Nico)
+* Collections (2:00)
+  * Collection / List / Set (Nico) (0:45)
     * RandomAccess, contains
     * Iterator, Iterable
     * for loop
@@ -119,7 +120,7 @@ Ablauf
     # Satz zerlegen, Worte nach Länge sortieren
       * set vs. list, verschiedene Worte mit selber Länge, ...
 
-  * Map (Arno)
+  * Map (Arno) (0:30)
     * of, ofEntries, copyOf
     * put, get, getOrDefault()
     * containsKey, containsValue, contains
@@ -146,7 +147,7 @@ Ablauf
     * LinkedHashMap
       * LRU-Cache
 
-  * Lambdas (Nico)
+  * Lambdas (Nico) (0:00 :-) )
     * functional interface, SAM
     * Syntax-Varianten
     * bindings / closure
@@ -155,7 +156,7 @@ Ablauf
     # Collection.forEach() -> alle Elemente einer Liste ausgeben (explizit, Pointer auf eigene Methode, Pointer auf System.out.println)
     # eigenes "funktionales Interface", statische Methode "applyToFirst", die dieses eigene Interface auf dsa erste Element einer Liste anwendet (?)
 
-  * Streams (Nico)
+  * Streams (Nico) (0:45)
     * was ist das
     * vs. iterator()
     * filter(), map(), forEach(), collect() auf List
@@ -188,10 +189,10 @@ Ablauf
 
 ==== Mittag
 
-  * Primitives
+  * Primitives (Verdauungs-Koma -> 0:30 inkl. Übung)
     - types
     - int, byte, long, char
-    - long <= int <= byte  (Coercion)
+    - long <= int <= short <= byte  (Coercion)
     - bitmask == 0x80  -> ?!
     - float, double
     --  1/8 + 1/4 == 3/8
@@ -201,8 +202,13 @@ Ablauf
     hex, bin
     octal(!)
 
-    Boxed
-    - Number, Integer, Long
+    Boxing
+    * implizit
+    * ==
+    * of
+    * null, NPE
+
+    * Number, Integer, Long
 
     * allgemein: Companion Objects
 
@@ -217,7 +223,7 @@ Ablauf
       - int <-> Integer
       - String[] vs Object[] ?!?!?
 
-    * Character
+    * Character (0:30 mit String)
       * isLetter()
       * isDigit()
       * isWhitespace()
@@ -248,7 +254,7 @@ Ablauf
     # Whitespaces in einem String zählen
     # den ersten Identifier aus einem String extrahieren
 
-    Enums
+    (Enums)
      - Constructor, fields, methods
      - name, valueOf, values
      - indexOf -> DB!? Boom
@@ -256,25 +262,30 @@ Ablauf
      - ==
      - switch vollständig
 
-  * Comparable / Comparator
+  * Comparable / Comparator (0:15)
     TODO
 
 
-  * Time API (Arno)
+  * Time API (Arno) (1:00)
     * Instant
       * now()
-      * before(), after()
+      * isBefore(), isAfter()
       * until() -> Duration, ChronoUnit
+      * Rechnen
 
     # wie lange dauert ...?
 
     * LocalDateTime
+      * isBefore(), isAfter()
+      * Zugriff auf Felder
+      * rechnen
 
     # Wochentag des Geburtstags
     # 10.000er Geburtstag
 
     * ZoneId
       * ZoneRegion, ZoneOffset
+      * Konvertieren
       * ZonedDateTime
 
     # ist es zwischen 13:00 und 14:00 an einem Wochentag?
@@ -290,30 +301,29 @@ Ablauf
       * Instant.toString(), LocalDateTime.toString()
       * Jackson: JavaTimeModule, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
 
-  * Reflection innerhalb einer Klasse (Nico)
+  * Reflection innerhalb einer Klasse (Nico) (0:20)
 
-  TODO
+    * Beispiel live Exception
 
     # alle Methoden / Felder von HashSet ausgeben
     # Klasse "Person", Property by name setzen / lesen
 
-  * Reflection "im Großen" (Arno)
+  * Reflection "im Großen" (Arno) (0:20)
 
     * contextClassLoader()
       * *nicht* Class.forName()
-    * annotation
+    * (annotation)
     * Type vs Class
 
 
     # Typ-Hierarchie von ArrayList
     # Typ-Hierarchie der Klasse zu einem FQN
-  TODO
 
-
-  * Optional / Auswahl
+  * Optionaler Teil / Auswahl
     * Pattern / Regex
     * Random
     * UUID
+    * Optional
     * Arrays
     * Chronology
     * Methoden von java.lang.Object
