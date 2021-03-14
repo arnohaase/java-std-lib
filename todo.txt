@@ -524,3 +524,49 @@ context class loader
 resource as stream
 resources as stream
 service loader
+
+methods of java.lang.Object
+---------------------------
+* equals
+  * es ist ok, es nicht zu überschreiben
+    * regex Pattern
+    * services
+  * RST
+    * R: selten überraschend
+    * S
+      * CaseInsensitiveString
+      * Vererbung - AbstractSet, AbstractList -> List.contains
+  * billig (!) - kein I/O (NW-Adresse, File.canonicalPath)
+  * selektiv -> bewusst, nicht alle Attribute (generiert / Lombok / data classes / records!)
+  * Aufbau: ==, instanceof, cast, Felder
+* hashCode
+  * consistent with equals
+  * System.identityHashCode entspricht == (-> IdentityMashMap)
+  * equal => gleicher hashCode, nicht anders herum (hashing ist verlustbehaftet)
+  * wünschenswert:
+    * gleichmäßig verteilt
+    * wenig Clashes
+    * stabil
+    * schnell
+  * Caching wenn teuer (s. String.hash)
+* toString
+  * menschenlesbar - generierte Implementierung ist oft nicht ideal
+  * *nur* für Debug -> ggf. zusätzlicher Getter (s. UUID, StringBuilder)
+  * Marker für Typ, Unterscheidung von String-Literal (z.B. PhoneNumber)
+  * handgeschrieben vs. auto / generiert (beides mit Vorteilen)
+* clone
+  * don't :-)
+    * keine klare Semantik für "kopieren"
+    * kein Anwendungsfeld für generisches Kopieren
+      * -> aber fachliches Kopieren per Visitor, Visitor etc.; Kotlin .copy(...) oder Immutables .with...(...)
+    * Object.clone() is protected
+      * ... and Cloneable macht es nicht public
+    * bypasses constructor call
+* Comparable
+  * "die eine" Reihenfolge ("natural")
+    * gibt es (fachlich) außer bei Zahlen nicht - z.B. String.compareTo vs. Collator, ignoreCase, ...
+    * außer für technische / nicht menschensichtbare Reihenfolge (z.B. String)
+  * Comparator ist die bessere Alternative - robuster, explizit, kontextspezifisch
+  * JavaDoc: "not required to be consistent with equals" -> HashSet und TreeSet haben verschiedene Semantik
+
+
