@@ -5,6 +5,11 @@ Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
 "verteilten" Workspace live aufbauen und wachsen lassen? (--> auch als Material für die Teilnehmen)
 * erklären: JUnit-Tests, um kleine Schnipsel unabhängig ausführen zu können
 
+* Am Anfang Bedeutung von Übungen erklären
+* nach Übungen Beispiel-Lösungen durchgehen, zu Fragen ermutigen
+
+* Collections ganz vormittags / nachmittags?
+
 TODO Live-workspace aufsetzen
 
 Ablauf
@@ -19,24 +24,25 @@ Ablauf
       * "halb" blocking
       * Basis-API:
         * int read() -> -1 für EOF, "unsigned byte"
-        * int read(byte[]) -> mit / ohne offs / len -> liest nicht immer alles, was da ist
+        * (int read(byte[]) -> mit / ohne offs / len -> liest nicht immer alles, was da ist)
           * Bulk Read -> Performance-Optimierung -> BufferedInputStream, NIO / ByteBuffer
         * close() -> potentiell OS-Ressourcen -> exhaustion zeigen
-      * erweitertes API -> low-level aber seltener gebraucht
+      * (erweitertes API -> low-level aber seltener gebraucht)
         * long skip(long)
         * long available()
         * isMarkSupported(), mark(), reset()
-      * Convenience-API -> Logik "obendrauf"
+      * (Convenience-API -> Logik "obendrauf")
         * transferTo(OutputStream)
         * readNBytes()
         * readAllBytes()
         * void skipNBytes(long)
     * OutputStream
       * write(byte) -> statt int bei read!
-      * write(byte[]) -> mit / ohne offs / len
+      * (write(byte[]) -> mit / ohne offs / len)
       * close()
       * flush()
     * Ausprägungen
+      * Servlet
       * File
       * ByteArray
       * Buffered (--> Wrapper)
@@ -83,14 +89,6 @@ Ablauf
     
     # Datei in einen String einlesen (zeichenweise, dann gerne auch mit Convenience)
     # Datei von ISO-8859-1 nach UTF-8 konvertieren (streaming)
-
-  * Exceptions (0:00)
-    * Throwable, Error, RuntimeException
-    * functional interfaces (wrap - RuntimeException / TunnelingException / lokale Kategorisierung? -> Diskussion)
-    * cause, suppressed
-    * stack traces
-    # Beispiel für cause, suppressed
-    # Quiz, Frage / Antwort (class not found, no such method)
 
 * Collections (2:00)
   * Collection / List / Set (Nico) (0:45)
@@ -189,7 +187,7 @@ Ablauf
 
 ==== Mittag
 
-  * Primitives (Verdauungs-Koma -> 0:30 inkl. Übung)
+  * Primitives (Verdauungs-Koma -> 0:15 ohne Übung)
     - types
     - int, byte, long, char
     - long <= int <= short <= byte  (Coercion)
@@ -199,8 +197,8 @@ Ablauf
     --  5.1 + 0.1 != 5.2
 
     int a = 10_000
-    hex, bin
-    octal(!)
+    (hex, bin)
+    (octal(!))
 
     Boxing
     * implizit
@@ -212,18 +210,18 @@ Ablauf
 
     * allgemein: Companion Objects
 
-    Number
+    (Number)
     * NumberFormat
       * getInstance()
       * DecimalFormat
 
-    # schreibe eine Methode, die eine beliebige Zahl mit '_' als Tausendertrenner und vier Nachkommastellen formatiert
+    (# schreibe eine Methode, die eine beliebige Zahl mit '_' als Tausendertrenner und vier Nachkommastellen formatiert)
 
-    Array[]
+    (Array[])
       - int <-> Integer
       - String[] vs Object[] ?!?!?
 
-    * Character (0:30 mit String)
+    (* Character) (0:30 mit String))
       * isLetter()
       * isDigit()
       * isWhitespace()
@@ -233,20 +231,20 @@ Ablauf
       * getName()
       * getDirectionality()
 
-    * Strings
+    * Strings (0:30)
       * charAt
       * chars()
       * Escaping, \\ \u
       * Multi-Line literals
       * format
-      * concatenation
+      (* concatenation)
         * +
         * StringBuilder
-      * substring()
+      (* substring())
         * kein Sharing mehr
       * startsWith(), endsWith()
       * indexOf(), lastIndexOf()
-      * intern(), new String()
+      (* intern(), new String())
       * replace(), replaceAll()
       * toLowerCase(), toUpperCase(), equalsIgnoreCase()
       * join()
@@ -262,7 +260,7 @@ Ablauf
      - ==
      - switch vollständig
 
-  * Comparable / Comparator (0:15)
+  * (Comparable / Comparator (0:15))
     TODO
 
 
@@ -300,6 +298,21 @@ Ablauf
       * statische Felder mit vordefinierten Formattern
       * Instant.toString(), LocalDateTime.toString()
       * Jackson: JavaTimeModule, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   * Reflection innerhalb einer Klasse (Nico) (0:20)
 
@@ -524,6 +537,16 @@ context class loader
 resource as stream
 resources as stream
 service loader
+
+  * Exceptions (0:00)
+    * Throwable, Error, RuntimeException
+    * functional interfaces (wrap - RuntimeException / TunnelingException / lokale Kategorisierung? -> Diskussion)
+    * cause, suppressed
+    * stack traces
+    # Beispiel für cause, suppressed
+    # Quiz, Frage / Antwort (class not found, no such method)
+
+
 
 methods of java.lang.Object
 ---------------------------
