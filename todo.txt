@@ -1,19 +1,68 @@
 
-Ablauf - Pausen? Fragen, interaktiv! Kamrea an? Bildschirm freigeben!
+Ablauf - Pausen? Fragen, interaktiv! Kamera an? Bildschirm freigeben!
 * "euer" Workshop, euer Tempo, eure Schwerpunkte
 * jederzeit akustisch zu Wort melden
 "verteilten" Workspace live aufbauen und wachsen lassen? (--> auch als Material für die Teilnehmen)
+
+TODO normaler Code statt Tests, um Verwirrung zu vermeiden?
 * erklären: JUnit-Tests, um kleine Schnipsel unabhängig ausführen zu können
 
 * Am Anfang Bedeutung von Übungen erklären
 * nach Übungen Beispiel-Lösungen durchgehen, zu Fragen ermutigen
 
-* Collections ganz vormittags / nachmittags?
-
 TODO Live-workspace aufsetzen
 
 Ablauf
 ------
+
+  * Primitives (0:15 ohne Übung)
+
+    * Number, Integer, Long
+      * allgemein: Companion Objects
+
+    Boxing
+    * implizit
+    * ==
+    * of
+    * null, NPE
+
+
+
+    * Strings (0:30)
+      * Multi-Line literals
+      * Escaping, \\ \u -> \u20bf
+      * charAt
+      * chars()
+      * Character.is...()
+      * substring
+
+      # Whitespaces in einem String zählen
+      # den ersten Identifier aus einem String extrahieren
+
+      * format
+      * startsWith(), endsWith()
+      * indexOf(), lastIndexOf()
+      * replace(), replaceAll()
+      * toLowerCase(), toUpperCase(), equalsIgnoreCase()
+      * join()
+
+      # "Welt" durch "JAX" ersetzen
+
+      * Encodings: Zeichen auf Bytes und umgekehrt
+        * String.getBytes
+        * new String(...)
+
+        * manchmal scheinbar gleich, aber wichtiger Unterschied
+          * iso-8859-15
+          * utf-8 -> bis zu 6 bytes/Zeichen
+          * utf-16 -> Basis-Typ "char"
+        * beide Richtungen funktionieren nicht immer
+        * hat nichts zu tun mit CR / CR+LF etc.
+
+      * Plattform- / Default-Encoding -> Probleme
+      * variable length encoding UTF-8
+
+      # Test, ob ein String in utf-8 gleich lang ist wie in iso-8859-1 (und in ASCII)
 
 * I/O (Arno) 1:00
 
@@ -24,21 +73,9 @@ Ablauf
       * "halb" blocking
       * Basis-API:
         * int read() -> -1 für EOF, "unsigned byte"
-        * (int read(byte[]) -> mit / ohne offs / len -> liest nicht immer alles, was da ist)
-          * Bulk Read -> Performance-Optimierung -> BufferedInputStream, NIO / ByteBuffer
         * close() -> potentiell OS-Ressourcen -> exhaustion zeigen
-      * (erweitertes API -> low-level aber seltener gebraucht)
-        * long skip(long)
-        * long available()
-        * isMarkSupported(), mark(), reset()
-      * (Convenience-API -> Logik "obendrauf")
-        * transferTo(OutputStream)
-        * readNBytes()
-        * readAllBytes()
-        * void skipNBytes(long)
     * OutputStream
       * write(byte) -> statt int bei read!
-      * (write(byte[]) -> mit / ohne offs / len)
       * close()
       * flush()
     * Ausprägungen
@@ -59,13 +96,6 @@ Ablauf
 
     * Reader -> Zeichen-basiert
       * oft (nicht immer) auf Bytes abgebildet, dann *immer* über Encoding
-        * Encodings: Zeichen auf Bytes und umgekehrt
-          * manchmal scheinbar gleich, aber wichtiger Unterschied
-            * iso-8859-15
-            * utf-8 -> bis zu 6 bytes/Zeichen
-            * utf-16 -> Basis-Typ "char"
-          * beide Richtungen funktionieren nicht immer
-          * hat nichts zu tun mit CR / CR+LF etc.
       * int read() --> int statt char wg. -1 für EOF
       * int read(char[]) -> mit / ohne offset / len
       * close()
@@ -86,9 +116,50 @@ Ablauf
         * es gibt PrintStream -> Legacy für System.out, System.err
 
     * AutoCloseable, try-with-resource (einer, mehrere)
-    
+
+
+    # Zeigen: Files.readString() / writeString() -> :-)
     # Datei in einen String einlesen (zeichenweise, dann gerne auch mit Convenience)
     # Datei von ISO-8859-1 nach UTF-8 konvertieren (streaming)
+
+
+  * Time API (Arno) (1:00)
+    * Instant
+      * now()
+      * isBefore(), isAfter()
+      * until() -> Duration, ChronoUnit
+      * Rechnen
+
+    # wie lange dauert ...?
+
+    * LocalDateTime
+      * isBefore(), isAfter()
+      * Zugriff auf Felder
+      * rechnen
+
+    # Wochentag des Geburtstags
+    # 10.000er Geburtstag
+
+    * ZoneId
+      * ZoneRegion, ZoneOffset
+      * Konvertieren
+      * ZonedDateTime
+
+    # ist es zwischen 13:00 und 14:00 an einem Wochentag?
+
+    * Testability
+      * Clock
+
+    # Beispiele oben umstellen
+      * Beispiel für Instant mit Clock: Person-Struct, der den Erzeugungs-Timestamp in einem Feld speichert
+
+    * Formatieren: DateTimeFormatter
+      * statische Felder mit vordefinierten Formattern
+      * Instant.toString(), LocalDateTime.toString()
+      * Jackson: JavaTimeModule, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
+
+==== Mittag
+
 
 * Collections (2:00)
   * Collection / List / Set (Nico) (0:45)
@@ -154,7 +225,9 @@ Ablauf
     # Collection.forEach() -> alle Elemente einer Liste ausgeben (explizit, Pointer auf eigene Methode, Pointer auf System.out.println)
     # eigenes "funktionales Interface", statische Methode "applyToFirst", die dieses eigene Interface auf dsa erste Element einer Liste anwendet (?)
 
-  * Streams (Nico) (0:45)
+
+
+  * Streams (Nico) (1:00)
     * was ist das
     * vs. iterator()
     * filter(), map(), forEach(), collect() auf List
@@ -185,9 +258,16 @@ Ablauf
     * parallel streams - nicht
 
 
-==== Mittag
 
-  * Primitives (Verdauungs-Koma -> 0:15 ohne Übung)
+
+
+
+
+
+
+
+
+
     - types
     - int, byte, long, char
     - long <= int <= short <= byte  (Coercion)
@@ -199,16 +279,6 @@ Ablauf
     int a = 10_000
     (hex, bin)
     (octal(!))
-
-    Boxing
-    * implizit
-    * ==
-    * of
-    * null, NPE
-
-    * Number, Integer, Long
-
-    * allgemein: Companion Objects
 
     (Number)
     * NumberFormat
@@ -231,26 +301,13 @@ Ablauf
       * getName()
       * getDirectionality()
 
-    * Strings (0:30)
-      * charAt
-      * chars()
-      * Escaping, \\ \u
-      * Multi-Line literals
-      * format
+
+  String
       (* concatenation)
         * +
         * StringBuilder
       (* substring())
         * kein Sharing mehr
-      * startsWith(), endsWith()
-      * indexOf(), lastIndexOf()
-      (* intern(), new String())
-      * replace(), replaceAll()
-      * toLowerCase(), toUpperCase(), equalsIgnoreCase()
-      * join()
-
-    # Whitespaces in einem String zählen
-    # den ersten Identifier aus einem String extrahieren
 
     (Enums)
      - Constructor, fields, methods
@@ -264,41 +321,18 @@ Ablauf
     TODO
 
 
-  * Time API (Arno) (1:00)
-    * Instant
-      * now()
-      * isBefore(), isAfter()
-      * until() -> Duration, ChronoUnit
-      * Rechnen
-
-    # wie lange dauert ...?
-
-    * LocalDateTime
-      * isBefore(), isAfter()
-      * Zugriff auf Felder
-      * rechnen
-
-    # Wochentag des Geburtstags
-    # 10.000er Geburtstag
-
-    * ZoneId
-      * ZoneRegion, ZoneOffset
-      * Konvertieren
-      * ZonedDateTime
-
-    # ist es zwischen 13:00 und 14:00 an einem Wochentag?
-
-    * Testability
-      * Clock
-
-    # Beispiele oben umstellen
-      * Beispiel für Instant mit Clock: Person-Struct, der den Erzeugungs-Timestamp in einem Feld speichert
-
-    * Formatieren: DateTimeFormatter
-      * statische Felder mit vordefinierten Formattern
-      * Instant.toString(), LocalDateTime.toString()
-      * Jackson: JavaTimeModule, SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
-
+       * (int read(byte[]) -> mit / ohne offs / len -> liest nicht immer alles, was da ist)
+          * Bulk Read -> Performance-Optimierung -> BufferedInputStream, NIO / ByteBuffer
+      * (erweitertes API -> low-level aber seltener gebraucht)
+        * long skip(long)
+        * long available()
+        * isMarkSupported(), mark(), reset()
+      * (Convenience-API -> Logik "obendrauf")
+        * transferTo(OutputStream)
+        * readNBytes()
+        * readAllBytes()
+        * void skipNBytes(long)
+      * (write(byte[]) -> mit / ohne offs / len)
 
 
 
